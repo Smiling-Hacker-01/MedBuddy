@@ -14,7 +14,6 @@ expo-env.d.ts
 *.p12
 *.key
 *.mobileprovision
-
 # metro
 .metro-health-check*
 
@@ -32,3 +31,7 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Native build folders
+/android/*
+/ios/*

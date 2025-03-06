@@ -23,31 +23,8 @@ export interface Doctor {
 const doctorEmitter = new SimpleEventEmitter();
 export const DOCTOR_CHANGE = 'DOCTOR_CHANGE';
 
-// Initialize with your existing doctors but updated structure
-export let doctors: Doctor[] = [
-  {
-    id: '1',
-    name: 'Dr. Afnan Khan',
-    specialty: 'Cardiologist',
-    phone: '+91 98985 47680',
-    clinicName: 'City Heart Hospital',
-    clinicPhone: '+91 40 2345 6789',
-    address: '123 Healthcare Street, Hyderabad, 500081',
-    notes: 'Available for consultations on Mon-Fri',
-    prescriptions: []
-  },
-  {
-    id: '2',
-    name: 'Dr. J Sasi Kiran',
-    specialty: 'Dentist',
-    phone: '+91 94940 12345',
-    clinicName: 'Smile Dental Clinic',
-    clinicPhone: '+91 40 2345 6790',
-    address: '456 Medical Avenue, Hyderabad, 500082',
-    notes: 'Emergency appointments available',
-    prescriptions: []
-  },
-];
+// Initialize with empty array instead of default doctors
+export let doctors: Doctor[] = [];
 
 export function addDoctor(doctor: Omit<Doctor, 'id'>) {
   const newDoctor = {

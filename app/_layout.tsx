@@ -20,7 +20,6 @@ export default function RootLayout() {
 
   const checkAuthStatus = async () => {
     try {
-      // Check if user is authenticated (you can modify this based on your auth implementation)
       const token = await AsyncStorage.getItem('userToken');
       setIsAuthenticated(!!token);
     } catch (error) {
@@ -28,114 +27,101 @@ export default function RootLayout() {
     }
   };
 
-  // Show nothing while checking authentication status
-  if (isAuthenticated === null) {
-    return null;
-  }
-
-  // If not authenticated, redirect to auth screen
-  if (!isAuthenticated) {
-    return <Redirect href="/auth" />;
-  }
-
-  // If authenticated, show the app content
   return (
-    <>
-      <Stack
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: colors.background,
-            ...glossyEffect,
-            borderBottomWidth: 1,
-            borderBottomColor: colors.primary + '40',
-          },
-          headerTintColor: colors.text,
-          headerTitleStyle: {
-            color: colors.text,
-            fontSize: 20,
-            fontWeight: '600',
-          },
-          headerShadowVisible: true,
-          statusBarStyle: 'light',
-          statusBarColor: colors.background,
-          contentStyle: {
-            backgroundColor: colors.background,
-          },
-        }}
-      >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen 
-          name="emergency" 
-          options={{ 
-            presentation: 'modal',
-            headerShown: false,
-          }} 
-        />
-        <Stack.Screen 
-          name="add-medication" 
-          options={{ 
-            presentation: 'modal',
-            title: 'Add Medication',
-            headerStyle: {
-              backgroundColor: colors.background,
-              ...glossyEffect,
-              borderBottomWidth: 1,
-              borderBottomColor: colors.primary + '40',
-            },
-          }} 
-        />
-        <Stack.Screen 
-          name="add-blood-pressure" 
-          options={{ 
-            presentation: 'modal',
-            title: 'Add Blood Pressure',
-            headerStyle: {
-              backgroundColor: colors.background,
-              ...glossyEffect,
-              borderBottomWidth: 1,
-              borderBottomColor: colors.primary + '40',
-            },
-          }} 
-        />
-        <Stack.Screen 
-          name="add-doctor" 
-          options={{ 
-            presentation: 'modal',
-            title: 'Add Doctor',
-            headerStyle: {
-              backgroundColor: colors.background,
-              ...glossyEffect,
-              borderBottomWidth: 1,
-              borderBottomColor: colors.primary + '40',
-            },
-          }} 
-        />
-        <Stack.Screen 
-          name="add-appointment" 
-          options={{ 
-            presentation: 'modal',
-            title: 'Add Appointment',
-            headerStyle: {
-              backgroundColor: colors.background,
-              ...glossyEffect,
-              borderBottomWidth: 1,
-              borderBottomColor: colors.primary + '40',
-            },
-          }} 
-        />
-        <Stack.Screen 
-          name="+not-found" 
-          options={{ 
-            headerStyle: {
-              backgroundColor: colors.background,
-              ...glossyEffect,
-              borderBottomWidth: 1,
-              borderBottomColor: colors.primary + '40',
-            },
-          }} 
-        />
-      </Stack>
-      <StatusBar style="auto" />
-    </>
+    <Stack
+      screenOptions={{
+        headerTitle: "MedBuddy by Kaif",
+        headerShown: true,
+        contentStyle: {
+          backgroundColor: colors.background,
+        },
+      }}
+    >
+      {isAuthenticated === null ? (
+        <Slot />
+      ) : !isAuthenticated ? (
+        <Redirect href="/auth" />
+      ) : (
+        <>
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen 
+            name="emergency" 
+            options={{ 
+              presentation: 'modal',
+            }} 
+          />
+          <Stack.Screen 
+            name="add-medication" 
+            options={{ 
+              presentation: 'modal',
+              headerShown: true,
+              title: 'Add Medication',
+              headerStyle: {
+                backgroundColor: colors.background,
+                ...glossyEffect,
+                borderBottomWidth: 1,
+                borderBottomColor: colors.primary + '40',
+              },
+              headerTintColor: colors.text,
+              headerTitleStyle: {
+                color: colors.text,
+                fontSize: 20,
+                fontWeight: '600',
+              },
+            }} 
+          />
+          <Stack.Screen 
+            name="add-blood-pressure" 
+            options={{ 
+              presentation: 'modal',
+              title: 'Add Blood Pressure',
+              headerStyle: {
+                backgroundColor: colors.background,
+                ...glossyEffect,
+                borderBottomWidth: 1,
+                borderBottomColor: colors.primary + '40',
+              },
+            }} 
+          />
+          <Stack.Screen 
+            name="add-doctor" 
+            options={{ 
+              presentation: 'modal',
+              title: 'Add Doctor',
+              headerStyle: {
+                backgroundColor: colors.background,
+                ...glossyEffect,
+                borderBottomWidth: 1,
+                borderBottomColor: colors.primary + '40',
+              },
+            }} 
+          />
+          <Stack.Screen 
+            name="add-appointment" 
+            options={{ 
+              presentation: 'modal',
+              title: 'Add Appointment',
+              headerStyle: {
+                backgroundColor: colors.background,
+                ...glossyEffect,
+                borderBottomWidth: 1,
+                borderBottomColor: colors.primary + '40',
+              },
+            }} 
+          />
+          <Stack.Screen 
+            name="+not-found" 
+            options={{ 
+              headerStyle: {
+                backgroundColor: colors.background,
+                ...glossyEffect,
+                borderBottomWidth: 1,
+                borderBottomColor: colors.primary + '40',
+              },
+            }} 
+          />
+        </>
+      )}
+    </Stack>
   );
 }

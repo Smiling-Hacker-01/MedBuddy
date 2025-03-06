@@ -125,21 +125,9 @@ export function getFrequencyText(frequency: number): string {
   }
 }
 
-// Initialize with sample data if needed
+// Remove or modify the initialization block
 if (medicationsList.length === 0) {
-  medicationsList = [
-    {
-      id: '1',
-      name: 'Aspirin',
-      dosage: '100mg',
-      frequency: 'Twice daily',
-      times: [
-        { time: '09:00', taken: false, skipped: false },
-        { time: '21:00', taken: false, skipped: false }
-      ],
-      notes: 'Take with food'
-    }
-  ];
+  medicationsList = []; // Remove default Aspirin data
   medicationEmitter.emit(MEDICATION_CHANGE, medicationsList);
 }
 

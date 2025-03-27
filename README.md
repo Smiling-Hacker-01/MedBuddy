@@ -55,10 +55,6 @@ MedBuddy is a **React Native (Expo)** mobile application designed to securely st
    npx expo start
    ```
 
-## 📜 License
-
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-
 ## 🤝 Contributing
 
 Feel free to submit issues or pull requests to improve MedBuddyFinal!
